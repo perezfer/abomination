@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 /**
  * Created by alfredo on 20/07/16.
  */
@@ -32,5 +34,13 @@ public class AbominationActivity extends AppCompatActivity {
         Fragment fragment = AbominationFragment.getInstance(null);
         fragmentTransaction.add(R.id.container, fragment, AbominationFragment.TAG);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (isFinishing()) {
+            Glide.with(this).onDestroy();
+        }
     }
 }
